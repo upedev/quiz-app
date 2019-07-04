@@ -1,6 +1,9 @@
 package com.cheetahlabs.quiz;
 
 import com.cheetahlabs.quiz.configuration.QuizConfiguration;
+import com.cheetahlabs.quiz.resources.UserResource;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
 
@@ -16,6 +19,7 @@ public class QuizApplication extends Application<QuizConfiguration> {
 
     @Override
     public void run(QuizConfiguration quizConfiguration, Environment environment) {
-
+        Injector injector = Guice.createInjector(new QuizGuiceModule(quizConfiguration, environment));
+        environment.jersey().register(injector.getInstance(UserResource.class));
     }
 }

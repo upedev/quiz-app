@@ -5,6 +5,6 @@ server:
 
 database:
   driverClass: com.mysql.cj.jdbc.Driver
-  url: jdbc:mysql://someip/quizdb
+  url: jdbc:mysql://localhost/quizdb
   user: root
   password: root
