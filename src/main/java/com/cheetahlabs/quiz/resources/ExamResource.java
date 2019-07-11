@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-@Path("/api")
+@Path("/exam")
 @Timed
 @ExceptionMetered
 public class ExamResource {
