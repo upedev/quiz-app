@@ -1,8 +1,8 @@
 package com.cheetahlabs.quiz.entities;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 
-@AllArgsConstructor
+@Builder
 public class Exam {
     private String id;
     private String name;

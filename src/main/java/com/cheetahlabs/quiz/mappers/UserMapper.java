@@ -10,7 +10,9 @@ import java.sql.SQLException;
 public class UserMapper implements ResultSetMapper<User> {
     @Override
     public User map(int i, ResultSet resultSet, StatementContext statementContext) throws SQLException {
-        return new User(resultSet.getInt("id"),
-                resultSet.getString("name"));
+        return User.builder()
+                .id(resultSet.getInt("id"))
+                .name(resultSet.getString("name"))
+                .build();
     }
 }

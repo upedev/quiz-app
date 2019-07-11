@@ -1,10 +1,12 @@
 package com.cheetahlabs.quiz.entities;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
+@Builder
 public class Question {
     private String id;
     private String section_id;
