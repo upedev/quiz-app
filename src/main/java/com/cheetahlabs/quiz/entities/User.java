@@ -1,4 +1,4 @@
-package com.cheetahlabs.quiz.models;
+package com.cheetahlabs.quiz.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
