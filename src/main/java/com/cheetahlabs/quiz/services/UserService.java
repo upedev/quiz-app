@@ -7,8 +7,8 @@ import com.google.inject.Inject;
 import java.util.List;
 
 public class UserService {
-
-    @Inject UserDao userDao;
+    @Inject
+    UserDao userDao;
 
     public List<User> getAllUsers() {
         return userDao.getAllUsers();

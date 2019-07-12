@@ -8,9 +8,10 @@ import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
 import java.util.List;
 
-@RegisterMapper(UserMapper.class)
+
 public interface UserDao {
     @Timed
-    @SqlQuery("select id, name from users")
+    @SqlQuery("select id from users")
+    @RegisterMapper(UserMapper.class)
     List<User> getAllUsers();
 }

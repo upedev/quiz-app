@@ -19,8 +19,11 @@ public class TestService {
         this.questionDao = questionDao;
     }
 
-    public Object generateRandomTest(String examId) {
+//    public String getExamId(String txnId) {
+//        return examDao(txnId);
+//    }
 
+    public Object generateRandomTest(String examId) {
         return null;
     }
 }

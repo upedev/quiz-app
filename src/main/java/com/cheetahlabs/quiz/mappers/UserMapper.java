@@ -1,6 +1,7 @@
 package com.cheetahlabs.quiz.mappers;
 
 import com.cheetahlabs.quiz.entities.User;
+import com.cheetahlabs.quiz.utils.ColumnFinder;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
@@ -11,8 +12,8 @@ public class UserMapper implements ResultSetMapper<User> {
     @Override
     public User map(int i, ResultSet resultSet, StatementContext statementContext) throws SQLException {
         return User.builder()
-                .id(resultSet.getInt("id"))
-                .name(resultSet.getString("name"))
+                .id(ColumnFinder.findColumn("id", resultSet) ? resultSet.getInt("id") : null)
+                .name(ColumnFinder.findColumn("name", resultSet) ? resultSet.getString("name") : null)
                 .build();
     }
 }
