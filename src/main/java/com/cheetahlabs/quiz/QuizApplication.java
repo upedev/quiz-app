@@ -1,6 +1,7 @@
 package com.cheetahlabs.quiz;
 
 import com.cheetahlabs.quiz.configuration.QuizConfiguration;
+import com.cheetahlabs.quiz.resources.TestResource;
 import com.cheetahlabs.quiz.resources.UserResource;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -24,6 +25,7 @@ public class QuizApplication extends Application<QuizConfiguration> {
         environment.jersey().setUrlPattern("/api/*");
         Injector injector = Guice.createInjector(new QuizGuiceModule(quizConfiguration, environment));
         environment.jersey().register(injector.getInstance(UserResource.class));
+        environment.jersey().register(injector.getInstance(TestResource.class));
     }
 
     @Override

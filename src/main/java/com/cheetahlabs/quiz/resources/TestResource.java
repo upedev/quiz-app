@@ -1,6 +1,6 @@
 package com.cheetahlabs.quiz.resources;
 
-import com.cheetahlabs.quiz.services.ExamService;
+import com.cheetahlabs.quiz.services.TestService;
 import com.codahale.metrics.annotation.ExceptionMetered;
 import com.codahale.metrics.annotation.Timed;
 
@@ -14,18 +14,18 @@ import javax.ws.rs.core.MediaType;
 @Path("/exam")
 @Timed
 @ExceptionMetered
-public class ExamResource {
-    private ExamService examService;
+public class TestResource {
+    private TestService testService;
 
     @Inject
-    ExamResource(ExamService examService) {
-        this.examService = examService;
+    TestResource(TestService testService) {
+        this.testService = testService;
     }
 
-    @Path("/generateExam")
+    @Path("/generateTest")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Object generateExam(@QueryParam("examID") String examId) {
-        return examService.createNewExam(examId);
+        return testService.generateRandomTest(examId);
     }
 }
