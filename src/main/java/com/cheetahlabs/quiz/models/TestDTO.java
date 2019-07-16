@@ -9,5 +9,5 @@ import java.util.Map;
 @Setter
 public class TestDTO {
     private String id;
-    private Map<String, SectionDTO> dump;
+    private Map<String, SectionDTO> test;
 }

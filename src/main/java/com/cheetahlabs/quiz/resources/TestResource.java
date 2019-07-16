@@ -25,7 +25,7 @@ public class TestResource {
     @Path("/generateTest")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Object generateExam(@QueryParam("examID") String examId) {
+    public Object generateExam(@QueryParam("examId") String examId) {
         return testService.generateRandomTest(examId);
     }
 }

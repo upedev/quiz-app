@@ -15,7 +15,6 @@ public class TestMapper implements ResultSetMapper<Test> {
                 .id(ColumnFinder.findColumn("id", resultSet) ? resultSet.getString("id") : null)
                 .name(ColumnFinder.findColumn("name", resultSet) ? resultSet.getString("name") : null)
                 .description(ColumnFinder.findColumn("description", resultSet) ? resultSet.getString("description") : null)
-                .duration(ColumnFinder.findColumn("duration", resultSet) ? resultSet.getString("duration") : null)
                 .build();
     }
 }
