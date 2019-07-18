@@ -9,6 +9,9 @@ import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import io.dropwizard.views.ViewBundle;
+
+import java.util.Map;
 
 public class QuizApplication extends Application<QuizConfiguration> {
     public static void main( String[] args ) throws Exception {
@@ -22,7 +25,7 @@ public class QuizApplication extends Application<QuizConfiguration> {
 
     @Override
     public void run(QuizConfiguration quizConfiguration, Environment environment) {
-        environment.jersey().setUrlPattern("/api/*");
+//        environment.jersey().setUrlPattern("/api/*");
         Injector injector = Guice.createInjector(new QuizGuiceModule(quizConfiguration, environment));
         environment.jersey().register(injector.getInstance(UserResource.class));
         environment.jersey().register(injector.getInstance(TestResource.class));
@@ -31,7 +34,7 @@ public class QuizApplication extends Application<QuizConfiguration> {
     @Override
     public void initialize(Bootstrap<QuizConfiguration> bootstrap) {
         super.initialize(bootstrap);
-        bootstrap.addBundle(new AssetsBundle("/assets", "/", "index.html", "home"));
-        bootstrap.addBundle(new AssetsBundle("/assets/images", "/images", null, "images"));
+        bootstrap.addBundle(new ViewBundle<QuizConfiguration>());
+        bootstrap.addBundle(new AssetsBundle("/assets", "/assets"));
     }
 }

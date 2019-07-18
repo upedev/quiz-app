@@ -3,6 +3,7 @@ package com.cheetahlabs.quiz.configuration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
+import io.dropwizard.views.mustache.MustacheViewRenderer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,4 +24,5 @@ public class QuizConfiguration extends Configuration {
     public DataSourceFactory getQuizDb() {
         return quizDb;
     }
+
 }
