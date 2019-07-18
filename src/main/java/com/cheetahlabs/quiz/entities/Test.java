@@ -4,6 +4,8 @@ import com.cheetahlabs.quiz.models.TestDTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 
+import java.util.Date;
+
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 
 @Builder
@@ -14,4 +16,5 @@ public class Test {
     private String description;
     private TestDTO dump;
     private String duration;
+    private Date startTime;
 }
