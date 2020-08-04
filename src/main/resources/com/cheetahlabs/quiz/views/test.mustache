@@ -1,0 +1,34 @@
+{{> header}}
+{{> navbar}}
+<div class="container">
+    {{#test.sections}}
+        <div class="row">
+            <div class="col-md-8 col-12 section text-center">
+                {{name}}
+            </div>
+            {{#questions}}
+                <div class="col-md-8 col-12 outline question" id="question-{{id}}">
+                    <div class="question-text">
+                        {{name}}
+                    </div>
+                    <ul class="option-list">
+                        {{#options}}
+                            <li>
+                                <button class="option outline" id="option-{{id}}">{{text}}</button>
+                            </li>
+                        {{/options}}
+                    </ul>
+                </div>
+            {{/questions}}
+        </div>
+    {{/test.sections}}
+    <div class="row">
+        <div class="col-md-8 col-12 text-center mb-5">
+            <button type="button" class="btn btn-primary btn-lg submit-test">SUBMIT TEST</button>
+        </div>
+    </div>
+
+</div>
+{{> footer}}
+
+

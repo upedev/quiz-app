@@ -5,8 +5,11 @@ import com.cheetahlabs.quiz.dao.QuestionDao;
 import com.cheetahlabs.quiz.dao.SectionDao;
 import com.cheetahlabs.quiz.dao.TestDao;
 import com.cheetahlabs.quiz.entities.Test;
+import com.cheetahlabs.quiz.models.TestDTO;
 import com.google.inject.Inject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -34,6 +37,19 @@ public class TestService {
     }
 
     public List<Test> getActiveTest() {
-        return testDao.getActiveTests(System.currentTimeMillis());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentDateTime = dateFormat.format(new Date());
+        return testDao.getActiveTests(currentDateTime);
+    }
+
+    public List<Test> getUpcomingTests() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentDateTime = dateFormat.format(new Date());
+        return testDao.getUpcomingTests(currentDateTime);
+    }
+
+    public TestDTO getTest(String id) {
+        Test test = testDao.getTest(id);
+        return test.getDump();
     }
 }
