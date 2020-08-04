@@ -1,18 +1,16 @@
 package com.cheetahlabs.quiz.resources;
 
 import com.cheetahlabs.quiz.entities.Test;
+import com.cheetahlabs.quiz.models.TestDTO;
 import com.cheetahlabs.quiz.services.TestService;
 import com.cheetahlabs.quiz.views.ActiveTestListView;
+import com.cheetahlabs.quiz.views.TestView;
 import com.codahale.metrics.annotation.ExceptionMetered;
 import com.codahale.metrics.annotation.Timed;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
 import java.util.List;
 
 @Path("/test")
@@ -21,11 +19,13 @@ import java.util.List;
 public class TestResource {
     private TestService testService;
     private  ActiveTestListView activeTestListView;
+    private TestView testView;
 
     @Inject
-    TestResource(TestService testService, ActiveTestListView activeTestListView) {
+    TestResource(TestService testService, ActiveTestListView activeTestListView, TestView testView) {
         this.testService = testService;
         this.activeTestListView = activeTestListView;
+        this.testView = testView;
     }
 
     @Path("/generateTest")
@@ -38,8 +38,18 @@ public class TestResource {
     @Path("/getActiveTests")
     @GET
     public Response getActiveTests() {
-//        List<Test> activeTests = testService.getActiveTest();
-//        activeTestListView.setActiveTests(activeTests);
+        List<Test> activeTests = testService.getActiveTest();
+        List<Test> upcomingTests = testService.getUpcomingTests();
+        activeTestListView.setActiveTests(activeTests);
+        activeTestListView.setUpcomingTests(upcomingTests);
         return Response.ok().entity(activeTestListView).build();
+    }
+
+    @Path("/{test_id}")
+    @GET
+    public Response getTest(@PathParam("test_id") String testId, @Context HttpHeaders httpHeaders) {
+        TestDTO test = testService.getTest(testId);
+        testView.setTest(test);
+        return Response.ok().entity(testView).cookie(new NewCookie("test_id", testId, "/", "", "comment", 100, false)).build();
     }
 }

@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Collections;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -23,6 +25,13 @@ public class QuizConfiguration extends Configuration {
     @JsonProperty(DATABASE)
     public DataSourceFactory getQuizDb() {
         return quizDb;
+    }
+
+    private Map<String, Map<String, String>> viewRendererConfiguration = Collections.emptyMap();
+
+    @JsonProperty("viewRendererConfiguration")
+    public Map<String, Map<String, String>> getViewRendererConfiguration() {
+        return viewRendererConfiguration;
     }
 
 }

@@ -12,8 +12,17 @@ import java.util.List;
 public class ActiveTestListView extends View {
 
     List<Test> activeTests;
+    List<Test> upcomingTests;
 
     public ActiveTestListView(String templateName) {
         super(templateName);
+    }
+
+    public boolean hasActiveTest() {
+        return !(this.activeTests.size() == 0);
+    }
+
+    public boolean hasUpcomingTest() {
+        return !(this.upcomingTests.size() == 0);
     }
 }
